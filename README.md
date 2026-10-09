@@ -1,24 +1,25 @@
-# AI Crime Investigator
+# 🕵️ Design and Development of AI Crime Investigator
 
-Explainable AI system for crime investigation support.
+### *Every clue, connected — pinned, threaded, and explained.*
 
-## Features
-- NLP Entity & Relation Extraction
-- Knowledge Graph (NetworkX)
-- BFS / DFS / A* Path Search
-- Bayesian Confidence Scoring
-- CSP Contradiction Detection
-- Interactive Cytoscape.js Graph
-- PDF Report Generation
+> An explainable AI system that transforms unstructured crime narratives into a connected investigation graph, traces evidentiary paths, flags contradictions, and scores hypothesis strength — built for real investigative support.
 
-## How to Run
+---
 
-```bash
-pip install -r requirements.txt
-uvicorn backend.main:app --reload
-```
+## 🎯 The Problem
 
-Open: http://127.0.0.1:8000
+Traditional investigation review depends on **manual reading**.  
+As case files grow, critical relationships stay buried, conflicting alibis slip through, and officers lack a structured way to weigh uncertain leads.
 
-## Sample Case
-Use the text in `data/sample_cases/case1.txt`
+| Challenge                        | Impact                                      |
+|----------------------------------|---------------------------------------------|
+| Implicit evidence relationships  | Hidden links between suspects & evidence    |
+| Unweighted uncertain leads       | No mathematical framework to score strength |
+| Overlooked contradictions        | Timeline conflicts go unflagged             |
+| Lack of reasoning support        | Systems predict, but rarely explain         |
+
+---
+
+## 💡 The Solution
+
+**AI Crime Investigator** converts raw case text into:
