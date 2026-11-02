@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\Keerthisri\Downloads\AI_Crime_Investigator\AI_Crime_Investigator\venv"
+set "VIRTUAL_ENV=C:\Users\Keerthisri\Downloads\Design-and-Development-Ai-Crime-Investigator\Design-and-Development-Ai-Crime-Investigator\venv"
 
 if not defined PROMPT set PROMPT=$P$G
 

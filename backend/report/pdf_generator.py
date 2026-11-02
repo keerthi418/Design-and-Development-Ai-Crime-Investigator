@@ -12,8 +12,8 @@ import os
 from datetime import datetime
 
 
-def generate_pdf(case_id, entities, relations, contradictions, confidence, search_results, output_dir="reports"):
-    """Generate an explainable investigation PDF report."""
+def _generate_pdf_legacy(case_id, entities, relations, contradictions, confidence, search_results, output_dir="reports"):
+    """Original simple report (kept as a fallback)."""
     os.makedirs(output_dir, exist_ok=True)
     filename = os.path.join(output_dir, f"case_{case_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf")
 
@@ -108,3 +108,23 @@ def generate_pdf(case_id, entities, relations, contradictions, confidence, searc
 
     doc.build(story)
     return filename
+
+
+def generate_pdf(case_id, entities, relations, contradictions, confidence, search_results,
+                 output_dir="reports", case_text=None, meta=None):
+    """
+    Generate the investigation PDF report.
+
+    Same signature/return value as before (extra args are optional), so main.py
+    needs no change. Uses the Tamil Nadu Police style layout; if that layout
+    fails for any reason, the original simple report is generated instead.
+    """
+    try:
+        from backend.report.tn_police_report import build_tn_police_report
+        return build_tn_police_report(case_id, entities, relations, contradictions, confidence,
+                                      search_results, output_dir=output_dir,
+                                      case_text=case_text, meta=meta)
+    except Exception as exc:  # never break the pipeline because of formatting
+        print(f"[report] TN Police layout failed ({exc}); using legacy report.")
+        return _generate_pdf_legacy(case_id, entities, relations, contradictions, confidence,
+                                    search_results, output_dir)
